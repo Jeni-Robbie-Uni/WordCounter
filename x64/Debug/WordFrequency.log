@@ -1,5 +1,3 @@
 ﻿  HashTable.cpp
-  WordFrequency.cpp
-C:\Users\jenir\source\repos\WordFrequency\WordFrequency.cpp(20,16): warning C4101: 'hTable': unreferenced local variable
-  Generating Code...
+C:\Users\jenir\source\repos\WordFrequency\HashNode.h(17,3): warning C4091: 'static ': ignored on left of 'HashNode' when no variable is declared
   WordFrequency.vcxproj -> C:\Users\jenir\source\repos\WordFrequency\x64\Debug\WordFrequency.exe

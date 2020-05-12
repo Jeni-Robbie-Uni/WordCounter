@@ -17,7 +17,7 @@ int main()
 
 {
 
-    HashTable* hTable;
+    HashTable hTable;
 
 
 
@@ -68,12 +68,16 @@ int main()
         {
 
             currentWord.SetWord(currentWord.ReadWord(file));
-            
-            cout << currentWord.GetWord() << " "; 
-            cout << currentWord.getASCIItotal() << endl;
-        }
+           
+            hTable.insert(currentWord.GetWord(), currentWord.getASCIItotal(), hTable);
 
-       
+
+        }
+        
+        for (int i = 0; i < hTable.GetArraySize(); i++)
+        {
+            cout << hTable.content[i].element<<endl;
+        }
 
             
         cout << endl;

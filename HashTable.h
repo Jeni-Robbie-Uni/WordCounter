@@ -1,5 +1,4 @@
 #pragma once
-#include <string>
 #include "HashNode.h"
 
 using namespace std;
@@ -8,39 +7,24 @@ using namespace std;
 
 class HashTable
 {
-
-
-
-
-
-
 	public:
-		int arraySize;
+		int arraySize=0;
 		int attempts = 0;
 		int numInserts = 0;
-		static HashNode content[];
-
-
-
+		HashNode* content=nullptr;
 
 	public:
 		HashTable();
 		HashTable(int);
 
 
-		static bool isPresent(string);
-		static bool isEmpty(int, HashTable);
-		static bool isArrayFull();
+		bool isPresent(string, int);
+		bool isEmpty(int, HashTable);
+		bool isArrayFull();
 
-
+		int GetArraySize();
 		int hash(int, const int);
 
-		void insert(string,const int num, HashTable x);
-
-	
-
-
-
-
+		void insert(string,const int num, HashTable);
 };
 
