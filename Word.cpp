@@ -25,8 +25,7 @@ string Word::ConvertToLowerCase(string input) {
 	return input;
 
 }
-
-string Word::ValidateWord(string input) {
+ string Word::ValidateWord(string input) {
     for (int i = 0; i < input.length(); i++)
     {
         //Check if character is alphabetical character
@@ -40,3 +39,18 @@ string Word::ValidateWord(string input) {
     }
     return input;
 }
+
+
+ string Word::ReadWord(ifstream& file) {
+     string word;
+
+         //get string 
+         file >> word;
+
+         //Convert word to correct format
+         word = ConvertToLowerCase(word);
+
+         word = ValidateWord(word);
+
+     return word;
+ }
