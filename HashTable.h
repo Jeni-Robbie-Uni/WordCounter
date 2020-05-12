@@ -1,42 +1,41 @@
 #pragma once
 #include <string>
+#include "HashNode.h"
+
 using namespace std;
 
 
 
 class HashTable
 {
-	private:
+
+
+
+
+
+
+	public:
 		int arraySize;
-		
 		int attempts = 0;
 		int numInserts = 0;
+		static HashNode content[];
 
 
-protected:
-	class HashNode
-	{
-	public:
-		string element;     //holds word value
-		string* pElement = &element;		//Create pointer so I can set string to null as cant otherwise
-		int count = 0;          //hold number of occurences of word
 
-		HashNode() : pElement(NULL), count(1) {}     //Constructor
-
-	};
 
 	public:
 		HashTable();
 		HashTable(int);
-		HashTable(const HashTable*);
 
-		bool isPresent(string);
-		bool isArrayFull();
+
+		static bool isPresent(string);
+		static bool isEmpty(int, HashTable);
+		static bool isArrayFull();
 
 
 		int hash(int, const int);
 
-		void insert(string,const int num);
+		void insert(string,const int num, HashTable x);
 
 	
 

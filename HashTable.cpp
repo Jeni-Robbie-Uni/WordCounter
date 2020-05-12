@@ -1,13 +1,14 @@
 #pragma once
 #include "HashTable.h"
+
 #include <string>
 using namespace std;
 
 
 HashTable::HashTable() {
+	
 	arraySize = 30;
-
-	HashNode* content = new HashNode[arraySize];
+	content[arraySize];
 
 
 }
@@ -19,9 +20,6 @@ HashTable::HashTable(int size) {
 }
 
 
-HashTable::HashTable(const HashTable* oldTable) {
-
-}
 
 
 
@@ -33,16 +31,16 @@ int HashTable::hash(int attempts, const int number) {								//Hasg function for
 
 
 
-void HashTable::insert(string word, const int num) {
+void HashTable::insert(string word, const int num, HashTable x) {
 	int attempts = 0;
-
+	int arrPos=0;
 	//while isPresent=false || isEmpty==false
 
+	do{
+		arrPos= hash(attempts, num);
+		attempts++;
 
-	hash(attempts, num);
-	attempts++;
-
-
+	} while (!isEmpty(arrPos, x) || isPresent(word));
 
 
 
@@ -55,4 +53,13 @@ bool HashTable::isPresent(string) {
 
 bool HashTable::isArrayFull() {
 	return false;
+}
+
+bool HashTable::isEmpty(int index, HashTable x) {
+
+	content[index];
+	
+	
+
+	return true;
 }
