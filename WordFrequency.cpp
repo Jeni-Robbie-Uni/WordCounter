@@ -16,9 +16,14 @@ using namespace std;
 int main()
 
 {
+
+    HashTable* hTable;
+
+
+
     string readWord;
     Word currentWord; //word being read
-
+    
     string fileName;        //Name of file to be opened and read
     ifstream file;
     bool exit;
@@ -61,9 +66,15 @@ int main()
 
         while (!file.eof())
         {
-            readWord = currentWord.ReadWord(file);
-            cout << readWord << " ";
+
+            currentWord.SetWord(currentWord.ReadWord(file));
+            
+            cout << currentWord.GetWord() << " "; 
+            cout << currentWord.getASCIItotal() << endl;
         }
+
+       
+
             
         cout << endl;
         file.close();

@@ -6,22 +6,23 @@ using namespace std;
 class Word
 {
 	private:
-		string word = "";
-		int frequency = 0;
+		string word;
+
 
 public:
+		
+	Word();
+	Word(string);
+
 		string GetWord();
 		void SetWord(string);
-
-		int GetFrequency();
-		void incrementFrequency();
 
 		static string ConvertToLowerCase(string);
 		static string ValidateWord(string);
 
 
 		string ReadWord(ifstream&);
-		
+		int getASCIItotal();
 
 };
 

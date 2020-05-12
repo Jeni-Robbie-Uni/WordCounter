@@ -1,4 +1,20 @@
 #include "Word.h"
+
+Word::Word() {
+    word = " ";
+    
+
+}
+
+Word::Word(string newWord) {
+    word = newWord;
+    
+
+}
+
+
+
+
 string Word::GetWord() {
 
 	return word;
@@ -7,13 +23,6 @@ void Word::SetWord(string input) {
 	word = input;
 }
 
-int Word::GetFrequency() {
-	return frequency;
-}
-
-void Word::incrementFrequency() {
-	frequency++;
-}
 
 string Word::ConvertToLowerCase(string input) {
 	for (int i = 0; i < input.length(); i++)
@@ -53,4 +62,19 @@ string Word::ConvertToLowerCase(string input) {
          word = ValidateWord(word);
 
      return word;
+ }
+
+int Word::getASCIItotal() {
+
+        int length = word.length();
+        int total = 0;
+
+        for (int i = 0; i < word.length(); i++) {
+
+            total += (int)word[i];
+        }
+        return total;
+
+
+     
  }

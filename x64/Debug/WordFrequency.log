@@ -1,2 +1,5 @@
-﻿  WordFrequency.cpp
+﻿  HashTable.cpp
+  WordFrequency.cpp
+C:\Users\jenir\source\repos\WordFrequency\WordFrequency.cpp(20,16): warning C4101: 'hTable': unreferenced local variable
+  Generating Code...
   WordFrequency.vcxproj -> C:\Users\jenir\source\repos\WordFrequency\x64\Debug\WordFrequency.exe
