@@ -1,11 +1,51 @@
 // WordFrequency.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
+
 #include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
+
+
+
+
 
 int main()
+
 {
-    std::cout << "Hello World!\n";
+    string word;        //Word to be read from file
+    bool isDuplicate;         //hold whether word is unique
+    string fileName;        //Name of file to be opened and read
+    ifstream readFile;
+
+
+    //Until exit condition is reached
+    while (fileName != "0")
+    {
+        //Instructions
+        cout << "Please enter name of text file user wishes to word count. For Example \"test.txt\"" << endl;
+        cin >> fileName;    //get name of file to be opened
+        if (fileName == "0")        //If exit condition is reached
+            continue;               //leave loop
+
+        readFile.open(fileName);    //Open file
+
+        //Check if file has opened correct
+        if (!readFile.is_open())
+        {
+            while ((!readFile.is_open()) && (fileName != "0"))        //Until file can be opened or user wants to exit
+            {
+                cout << "Error. Could not open file." << endl;
+                cout << "Please enter file name again or 0 to exit." << endl;
+
+
+                cin >> fileName;    //get name of file to be opened
+
+            }
+            if (fileName == "0")    //break loop if exit condition met
+                break;
+        }
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
