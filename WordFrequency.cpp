@@ -17,13 +17,9 @@ int main()
 
 {
 
-    HashTable hTable;
+    HashTable *hTable = new HashTable;
 
-
-
-    string readWord;
-    Word currentWord; //word being read
-    
+    string readWord;    
     string fileName;        //Name of file to be opened and read
     ifstream file;
     bool exit;
@@ -67,16 +63,26 @@ int main()
         while (!file.eof())
         {
 
-            currentWord.SetWord(currentWord.ReadWord(file));
+            readWord = InputUtils::ReadWord(file);
+
            
-            hTable.insert(currentWord.GetWord(), currentWord.getASCIItotal(), hTable);
+            hTable->insert(readWord, hTable);
+            if (hTable->isArrayFull() == true)
+            {
+                cout << "Full" << endl;
+                hTable->ReSizeHashTable(hTable);
+
+
+            }
+            
+
 
 
         }
         
-        for (int i = 0; i < hTable.GetArraySize(); i++)
+        for (int i = 0; i < hTable->GetArraySize(); i++)
         {
-            cout << hTable.content[i].element<<endl;
+            cout << hTable->content[i].element<< " " << hTable->content[i].count << endl;
         }
 
             

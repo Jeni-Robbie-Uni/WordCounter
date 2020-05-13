@@ -1,30 +1,54 @@
 #pragma once
-#include "HashNode.h"
 
+#include <string>
 using namespace std;
 
 
 
 class HashTable
 {
+
+
+
+		protected:
+			class HashNode
+			{
+
+			public:
+				string element;     //holds word value
+
+				int count = 0;          //hold number of occurences of word
+
+				HashNode() {
+					element = "EMPTY"; //will never match caUSE READ FILE always converts to lowercase
+					count = 0;
+				}
+
+			};
+
+
+
 	public:
-		int arraySize=0;
+		int arraySize;
 		int attempts = 0;
-		int numInserts = 0;
-		HashNode* content=nullptr;
+		int numInserts;
+		HashNode* content;
 
 	public:
 		HashTable();
 		HashTable(int);
-
+		void ReSizeHashTable(HashTable*);
 
 		bool isPresent(string, int);
-		bool isEmpty(int, HashTable);
+		bool isEmpty(int);
 		bool isArrayFull();
 
 		int GetArraySize();
-		int hash(int, const int);
+		int hash(int, string);
 
-		void insert(string,const int num, HashTable);
+		int insert(string, HashTable*);
+
+
+
 };
 

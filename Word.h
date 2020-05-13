@@ -2,27 +2,19 @@
 #include <fstream>
 #include <string>
 using namespace std;
-
-class Word
+ class InputUtils
 {
-	private:
-		string word;
+
 
 
 public:
-		
-	Word();
-	Word(string);
-
-		string GetWord();
-		void SetWord(string);
 
 		static string ConvertToLowerCase(string);
 		static string ValidateWord(string);
 
 
-		string ReadWord(ifstream&);
-		int getASCIItotal();
+		static string ReadWord(ifstream&);
+		
 
 };
 

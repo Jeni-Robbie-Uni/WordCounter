@@ -1,30 +1,8 @@
 #include "Word.h"
 
-Word::Word() {
-    word = " ";
-    
-
-}
-
-Word::Word(string newWord) {
-    word = newWord;
-    
-
-}
 
 
-
-
-string Word::GetWord() {
-
-	return word;
-}
-void Word::SetWord(string input) {
-	word = input;
-}
-
-
-string Word::ConvertToLowerCase(string input) {
+string InputUtils::ConvertToLowerCase(string input) {
 	for (int i = 0; i < input.length(); i++)
 	{
 		//Convert all characters to lower case
@@ -34,7 +12,7 @@ string Word::ConvertToLowerCase(string input) {
 	return input;
 
 }
- string Word::ValidateWord(string input) {
+ string InputUtils::ValidateWord(string input) {
     for (int i = 0; i < input.length(); i++)
     {
         //Check if character is alphabetical character
@@ -50,7 +28,7 @@ string Word::ConvertToLowerCase(string input) {
 }
 
 
- string Word::ReadWord(ifstream& file) {
+ string InputUtils::ReadWord(ifstream& file) {
      string word;
 
          //get string 
@@ -64,17 +42,3 @@ string Word::ConvertToLowerCase(string input) {
      return word;
  }
 
-int Word::getASCIItotal() {
-
-        int length = word.length();
-        int total = 0;
-
-        for (int i = 0; i < word.length(); i++) {
-
-            total += (int)word[i];
-        }
-        return total;
-
-
-     
- }
