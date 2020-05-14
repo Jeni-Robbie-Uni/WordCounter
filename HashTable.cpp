@@ -21,8 +21,7 @@ HashTable::~HashTable() {
 	delete[] content;
 }
 
-
-void HashTable::ReSizeHashTable(HashTable* old) {
+HashTable* HashTable::ReSizeHashTable(HashTable* old) {
 
 	int newArrSize = (old->arraySize) * 2;
 	HashTable* newPointer = new HashTable(newArrSize);		//create new bigger table
@@ -33,9 +32,10 @@ void HashTable::ReSizeHashTable(HashTable* old) {
 
 	}
 
-	HashTable* temp = old;		//will call hashtable destructor to delete this when I exit the function
-	*old = *newPointer;
-	
+	old->~HashTable();
+	old = nullptr;		
+	return newPointer;
+
 
 }
 

@@ -39,7 +39,7 @@ class HashTable
 		HashTable(int);
 		~HashTable();
 
-		void ReSizeHashTable(HashTable*);		
+		HashTable* ReSizeHashTable(HashTable*);		
 		void copy(HashTable*, HashTable*, int index);
 		void insert(string, HashTable*);
 

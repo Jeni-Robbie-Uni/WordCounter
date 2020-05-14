@@ -71,7 +71,7 @@ int main()
             
             if (hTable->isArrayFull())
             {
-                hTable->ReSizeHashTable(hTable);
+                hTable= hTable->ReSizeHashTable(hTable);
             }
 
         } while (!file.eof());
