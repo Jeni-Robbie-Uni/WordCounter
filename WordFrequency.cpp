@@ -69,15 +69,16 @@ int main()
            
             hTable->insert(readWord, hTable);
             
-            
-            
             if (hTable->isArrayFull())
             {
                 hTable->ReSizeHashTable(hTable);
             }
+
         } while (!file.eof());
         
-        for (int i = 0; i < hTable->GetArraySize(); i++)
+
+        int size = hTable->GetArraySize();
+        for (int i = 0; i < size; i++)
         {
             cout << hTable->content[i].key<< " " << hTable->content[i].value << endl;
         }

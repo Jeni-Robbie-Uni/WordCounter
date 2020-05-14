@@ -5,7 +5,7 @@
 using namespace std;
 
 HashTable::HashTable() {	
-	arraySize = 5;	
+	arraySize = 4;	
 	content = new HashNode[arraySize];
 }
 
@@ -35,7 +35,7 @@ void HashTable::ReSizeHashTable(HashTable* old) {
 
 	HashTable* temp = old;		//will call hashtable destructor to delete this when I exit the function
 	*old = *newPointer;
-
+	
 
 }
 
@@ -47,36 +47,48 @@ int HashTable::GetArraySize() {
 
 
 
-int HashTable::hash(int attempts, string word) {								//Hash function for strings
+int HashTable::DoubleHash(string word) {								//Hash function for strings
 
-	int total = 0;
-	int p;
+	int num = GetAsciiTotal(word);
+	int index1 = Hash1(num);
 	
-	for (int i = 0; i < word.length(); i++) {
+	
+	if (!isEmpty(index1) && !isPresent(word, index1)) {
+		int index2 = Hash2(num);
+		int i = 1;
+		int newIndex = 0;
+		
+		do
+		{
 
-		total += (int)word[i];		//Make distribution more random
-	};
-	
-	p = (total + attempts) % arraySize;
-	
-	if (!isEmpty(p) && !isPresent(word,p))
-		p=hash((attempts+1), word);
-	
-	return p;
+			newIndex = (index1 +i + index2) % arraySize;
+			i++;
+
+		} while (!isEmpty(newIndex) && !isPresent(word, newIndex));
+
+		return newIndex;
+	}
+	else
+		return index1;
+}
+int HashTable::Hash1(int total) {
+
+	return (total % arraySize);
+}
+int HashTable::Hash2(int total) {
+
+	return (3 - (total % 3));		//Needs to be a prome number smaller than start table
 }
 
-int HashTable::hash2(int total) {
 
-	return 0;
-}
 
 
 
 void HashTable::insert(string word,  HashTable* v) {
 	int attempts = 0;
-	int arrPos;
+	int arrPos=0;
 
-		arrPos= hash(attempts, word);
+	arrPos= DoubleHash( word);
 
 	if (isEmpty(arrPos)) {
 		content[arrPos].key = word;
@@ -92,17 +104,16 @@ void HashTable::insert(string word,  HashTable* v) {
 
 void HashTable::copy(HashTable* old, HashTable* newTable, const int index) {
 
-	int attempts = 0;
+	
 	int arrPos = 0;
 	string word = old->content[index].key;
 	
 	do {
-		arrPos = newTable->hash(attempts, word);
-		attempts++;
+		arrPos = newTable->DoubleHash( word);
 	} while (!isEmpty(arrPos));
 
-	content[arrPos].value = old->content[index].value;
-	content[arrPos].key = old->content[index].key;
+	newTable->content[arrPos].value = old->content[index].value;
+	newTable->content[arrPos].key = old->content[index].key;
 	newTable->numInserts++;
 
 }
@@ -131,4 +142,13 @@ bool HashTable::isEmpty(int index) {
 	else
 		return false;
 
+}
+
+int HashTable::GetAsciiTotal(string word) {
+	int total = 0;
+	for (int i = 0; i < word.length(); i++) {
+
+		total += (int)word[i];		//Make distribution more random
+	}
+	return total;
 }
