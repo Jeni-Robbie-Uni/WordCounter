@@ -4,12 +4,9 @@
 #include <iostream>
 using namespace std;
 
-HashTable::HashTable() {
-	
+HashTable::HashTable() {	
 	arraySize = 4;	
 	content = new HashNode[arraySize];
-
-
 }
 
 
@@ -18,27 +15,30 @@ HashTable::HashTable(int size) {
 	content = new HashNode[arraySize];
 
 }
-void HashTable::ReSizeHashTable( HashTable*old ) {
+
+
+HashTable::~HashTable() {
+	delete[] content;
+}
+
+
+void HashTable::ReSizeHashTable(HashTable* old) {
 
 	int newArrSize = (old->arraySize) * 2;
 	HashTable* newPointer = new HashTable(newArrSize);		//create new bigger table
-	int tempPos = 0;
-	HashTable* temp;
-	string tempWord;
-	int tempASCII;
 
 	for (int s = 0; s < old->arraySize; s++)
 	{
-		tempWord = old->content[s].element;
-		tempPos=newPointer->insert(tempWord, newPointer);
-		newPointer->content[tempPos].count = old->content[s].count;
+		newPointer->copy(old, newPointer, s);
 
 	}
-	temp = old; 
 
+	HashTable* temp = old;		//will call hashtable destructor to delete this when I exit the function
 	*old = *newPointer;
-	temp = nullptr;
+
+
 }
+
 
 int HashTable::GetArraySize() {
 	return arraySize;
@@ -47,9 +47,8 @@ int HashTable::GetArraySize() {
 
 
 
-int HashTable::hash(int attempts, string word) {								//Hasg function for strings
-	
-	int length = word.length();
+int HashTable::hash(int attempts, string word) {								//Hash function for strings
+
 	int total = 0;
 
 	for (int i = 0; i < word.length(); i++) {
@@ -64,44 +63,54 @@ int HashTable::hash(int attempts, string word) {								//Hasg function for stri
 
 
 
-int HashTable::insert(string word,  HashTable* v) {
+void HashTable::insert(string word,  HashTable* v) {
 	int attempts = 0;
 	int arrPos=0;
-	//while isPresent=false || isEmpty==false
 
 	do{
 		arrPos= hash(attempts, word);
 		attempts++;
 
 
-
-
-	} while (v->isEmpty(arrPos)==false && isPresent(word,arrPos)==false);
+	} while (!isEmpty(arrPos) && !isPresent(word,arrPos));
 	
 
-	if (v->isEmpty(arrPos) == true) {
+	if (isEmpty(arrPos)) {
 		content[arrPos].element = word;
 		content[arrPos].count = 1;
 		numInserts++;
 	}
-	else if (v->isPresent(word, arrPos) == true) {
+	else if (isPresent(word, arrPos)) {
 		content[arrPos].count++;
 	}
-	return arrPos;
+
+}
+
+
+void HashTable::copy(HashTable* old, HashTable* newTable, const int index) {
+
+	int attempts = 0;
+	int arrPos = 0;
+	string word = old->content[index].element;
+	
+	do {
+		arrPos = newTable->hash(attempts, word);
+		attempts++;
+	} while (!isEmpty(arrPos));
+
+	content[arrPos].count = old->content[index].count;
+	content[arrPos].element = old->content[index].element;
+	newTable->numInserts++;
+
 }
 
 
 bool HashTable::isPresent(string word, int index) {
 
 	if (content[index].element == word)
-	{
 		return true;
-
-	}
 	else
-	{
 		return false;
-	}
 
 }
 
@@ -113,8 +122,6 @@ bool HashTable::isArrayFull() {
 }
 
 bool HashTable::isEmpty(int index) {
-
-
 
 	if (content[index].element=="EMPTY")
 		return true;

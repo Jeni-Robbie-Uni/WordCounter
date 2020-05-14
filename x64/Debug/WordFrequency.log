@@ -1,4 +1,2 @@
-﻿  HashTable.cpp
-C:\Users\jenir\source\repos\WordFrequency\HashTable.cpp(28,6): warning C4101: 'tempASCII': unreferenced local variable
-C:\Users\jenir\source\repos\WordFrequency\HashTable.cpp(52,28): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+﻿  WordFrequency.cpp
   WordFrequency.vcxproj -> C:\Users\jenir\source\repos\WordFrequency\x64\Debug\WordFrequency.exe

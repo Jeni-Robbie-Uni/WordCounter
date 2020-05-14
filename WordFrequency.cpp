@@ -1,6 +1,9 @@
 // WordFrequency.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 
 #include <iostream>
 #include <string>
@@ -17,7 +20,7 @@ int main()
 
 {
 
-    HashTable *hTable = new HashTable;
+
 
     string readWord;    
     string fileName;        //Name of file to be opened and read
@@ -29,7 +32,7 @@ int main()
     do
     {
         exit = false;   //reset exit to false
-
+        HashTable* hTable = new HashTable(20);
 
         //Instructions
         cout << "Please enter name of text file user wishes to word count. For Example \"test.txt\"" << endl;
@@ -60,25 +63,20 @@ int main()
 
 
 
-        while (!file.eof())
+        do
         {
 
             readWord = InputUtils::ReadWord(file);
-
+            
+            if (readWord == "")         //if file finished has a new line or space it'll try and read word that isn't there so you have to ignore it
+                continue;
            
             hTable->insert(readWord, hTable);
-            if (hTable->isArrayFull() == true)
+            if (hTable->isArrayFull())
             {
-                cout << "Full" << endl;
                 hTable->ReSizeHashTable(hTable);
-
-
             }
-            
-
-
-
-        }
+        } while (!file.eof());
         
         for (int i = 0; i < hTable->GetArraySize(); i++)
         {
@@ -91,6 +89,8 @@ int main()
 
     }while (exit == false);
    
+    //_CrtDumpMemoryLeaks();
+
 }
 
 

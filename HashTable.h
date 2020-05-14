@@ -37,6 +37,8 @@ class HashTable
 	public:
 		HashTable();
 		HashTable(int);
+		~HashTable();
+
 		void ReSizeHashTable(HashTable*);
 
 		bool isPresent(string, int);
@@ -46,7 +48,8 @@ class HashTable
 		int GetArraySize();
 		int hash(int, string);
 
-		int insert(string, HashTable*);
+		void copy(HashTable*, HashTable*, int index);
+		void insert(string, HashTable*);
 
 
 
