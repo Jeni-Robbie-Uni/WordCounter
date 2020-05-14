@@ -17,11 +17,7 @@ using namespace std;
 
 
 int main()
-
 {
-
-
-
     string readWord;    
     string fileName;        //Name of file to be opened and read
     ifstream file;
@@ -32,7 +28,7 @@ int main()
     do
     {
         exit = false;   //reset exit to false
-        HashTable* hTable = new HashTable(20);
+        HashTable* hTable = new HashTable;
 
         //Instructions
         cout << "Please enter name of text file user wishes to word count. For Example \"test.txt\"" << endl;
@@ -72,6 +68,9 @@ int main()
                 continue;
            
             hTable->insert(readWord, hTable);
+            
+            
+            
             if (hTable->isArrayFull())
             {
                 hTable->ReSizeHashTable(hTable);
@@ -80,7 +79,7 @@ int main()
         
         for (int i = 0; i < hTable->GetArraySize(); i++)
         {
-            cout << hTable->content[i].element<< " " << hTable->content[i].count << endl;
+            cout << hTable->content[i].key<< " " << hTable->content[i].value << endl;
         }
 
             

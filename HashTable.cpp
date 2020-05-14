@@ -5,7 +5,7 @@
 using namespace std;
 
 HashTable::HashTable() {	
-	arraySize = 4;	
+	arraySize = 5;	
 	content = new HashNode[arraySize];
 }
 
@@ -50,38 +50,41 @@ int HashTable::GetArraySize() {
 int HashTable::hash(int attempts, string word) {								//Hash function for strings
 
 	int total = 0;
-
+	int p;
+	
 	for (int i = 0; i < word.length(); i++) {
 
-		total += (int)word[i];
+		total += (int)word[i];		//Make distribution more random
 	};
 	
-	int arrPos = (total + attempts) % arraySize;
-	return arrPos;
+	p = (total + attempts) % arraySize;
+	
+	if (!isEmpty(p) && !isPresent(word,p))
+		p=hash((attempts+1), word);
+	
+	return p;
 }
 
+int HashTable::hash2(int total) {
+
+	return 0;
+}
 
 
 
 void HashTable::insert(string word,  HashTable* v) {
 	int attempts = 0;
-	int arrPos=0;
+	int arrPos;
 
-	do{
 		arrPos= hash(attempts, word);
-		attempts++;
-
-
-	} while (!isEmpty(arrPos) && !isPresent(word,arrPos));
-	
 
 	if (isEmpty(arrPos)) {
-		content[arrPos].element = word;
-		content[arrPos].count = 1;
+		content[arrPos].key = word;
+		content[arrPos].value = 1;
 		numInserts++;
 	}
 	else if (isPresent(word, arrPos)) {
-		content[arrPos].count++;
+		content[arrPos].value++;
 	}
 
 }
@@ -91,15 +94,15 @@ void HashTable::copy(HashTable* old, HashTable* newTable, const int index) {
 
 	int attempts = 0;
 	int arrPos = 0;
-	string word = old->content[index].element;
+	string word = old->content[index].key;
 	
 	do {
 		arrPos = newTable->hash(attempts, word);
 		attempts++;
 	} while (!isEmpty(arrPos));
 
-	content[arrPos].count = old->content[index].count;
-	content[arrPos].element = old->content[index].element;
+	content[arrPos].value = old->content[index].value;
+	content[arrPos].key = old->content[index].key;
 	newTable->numInserts++;
 
 }
@@ -107,7 +110,7 @@ void HashTable::copy(HashTable* old, HashTable* newTable, const int index) {
 
 bool HashTable::isPresent(string word, int index) {
 
-	if (content[index].element == word)
+	if (content[index].key == word)
 		return true;
 	else
 		return false;
@@ -115,7 +118,7 @@ bool HashTable::isPresent(string word, int index) {
 }
 
 bool HashTable::isArrayFull() {
-	if (arraySize == numInserts)
+	if (arraySize ==numInserts)
 		return true;
 	else
 		return false;
@@ -123,7 +126,7 @@ bool HashTable::isArrayFull() {
 
 bool HashTable::isEmpty(int index) {
 
-	if (content[index].element=="EMPTY")
+	if (content[index].key=="EMPTY")
 		return true;
 	else
 		return false;

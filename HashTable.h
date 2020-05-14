@@ -15,13 +15,13 @@ class HashTable
 			{
 
 			public:
-				string element;     //holds word value
+				string key;     //holds word value
 
-				int count = 0;          //hold number of occurences of word
+				int value = 0;          //hold number of occurences of word
 
 				HashNode() {
-					element = "EMPTY"; //will never match caUSE READ FILE always converts to lowercase
-					count = 0;
+					key = "EMPTY"; //will never match caUSE READ FILE always converts to lowercase
+					value = 0;
 				}
 
 			};
@@ -47,6 +47,7 @@ class HashTable
 
 		int GetArraySize();
 		int hash(int, string);
+		int hash2(int);
 
 		void copy(HashTable*, HashTable*, int index);
 		void insert(string, HashTable*);
