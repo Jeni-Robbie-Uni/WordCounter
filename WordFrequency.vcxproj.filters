@@ -21,30 +21,27 @@
     <ClCompile Include="Word.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="readFile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="HashTable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SortList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NumUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="WordFrequency.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Word.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="HashTable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="readFile.h">
+    <ClInclude Include="SortList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SortList.h">
+    <ClInclude Include="NumUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

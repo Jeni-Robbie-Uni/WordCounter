@@ -57,7 +57,6 @@ class HashTable
 		int Hash2(int);
 		int GetAsciiTotal(string);
 
-		bool IsPrime(int);
-		int NextPrime(int);
+		
 };
 
