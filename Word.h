@@ -5,9 +5,6 @@ using namespace std;
  class InputUtils
 {
 
-	 int value;
-	 string key;
-
 public:
 
 	InputUtils();
@@ -15,11 +12,21 @@ public:
 		static string ValidateWord(string);
 		static string ReadWord(ifstream&);
 
-		void setKey(string);
+		/*void setKey(string);
 		void setValue(int);
 		string GetKey();
-		int GetValue();
+		int GetValue();*/
+
+
+
 		
 
 };
 
+ class wordCount {
+
+	 public:
+	 int value=0;
+	 string element;
+
+ };

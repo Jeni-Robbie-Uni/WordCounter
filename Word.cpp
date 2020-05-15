@@ -1,26 +1,27 @@
 #include "Word.h"
 
+/*
 InputUtils::InputUtils() {
     value = 0;
-    key = "";
+    element = "";
 }
 
 void InputUtils::setKey(string input) {
-    key = input;
+    element = input;
 }
 
 void InputUtils::setValue(int val) {
-    value = val;
+    element = val;
 }
 
 string InputUtils::GetKey() {
-    return key;
+    return element;
 }
 int InputUtils::GetValue() {
     return value;
 }
 
-
+*/
 
 string InputUtils::ConvertToLowerCase(string input) {
 	for (int i = 0; i < input.length(); i++)
@@ -61,4 +62,5 @@ string InputUtils::ConvertToLowerCase(string input) {
 
      return word;
  }
+
 
