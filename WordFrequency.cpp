@@ -10,6 +10,7 @@
 #include <fstream>
 #include "HashTable.h"
 #include "Word.h"
+#include <list>
 using namespace std;
 
 
@@ -89,7 +90,6 @@ int main()
 
     }while (exit == false);
    
-    //_CrtDumpMemoryLeaks();
 
 }
 

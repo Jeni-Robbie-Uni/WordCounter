@@ -5,7 +5,9 @@
 using namespace std;
 
 HashTable::HashTable() {	
-	arraySize = 4;	
+	arraySize = 7;			//prime number
+	
+	
 	content = new HashNode[arraySize];
 }
 
@@ -24,6 +26,10 @@ HashTable::~HashTable() {
 HashTable* HashTable::ReSizeHashTable(HashTable* old) {
 
 	int newArrSize = (old->arraySize) * 2;
+	if (!IsPrime(newArrSize)) {
+		newArrSize = NextPrime(newArrSize);
+	}
+
 	HashTable* newPointer = new HashTable(newArrSize);		//create new bigger table
 
 	for (int s = 0; s < old->arraySize; s++)
@@ -151,4 +157,40 @@ int HashTable::GetAsciiTotal(string word) {
 		total += (int)word[i];		//Make distribution more random
 	}
 	return total;
+}
+
+bool HashTable::IsPrime(int number)
+{
+
+	if (number == 2 || number == 3)
+		return true;
+
+	if (number % 2 == 0 || number % 3 == 0)
+		return false;
+
+	int divisor = 6;
+	while (divisor * divisor - 2 * divisor + 1 <= number)
+	{
+
+		if (number % (divisor - 1) == 0)
+			return false;
+
+		if (number % (divisor + 1) == 0)
+			return false;
+
+		divisor += 6;
+
+	}
+
+	return true;
+
+}
+int HashTable::NextPrime(int a)
+{
+
+	while (!IsPrime(++a))
+	{
+	}
+	return a;
+
 }

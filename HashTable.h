@@ -40,7 +40,7 @@ class HashTable
 		~HashTable();
 
 		HashTable* ReSizeHashTable(HashTable*);		
-		void copy(HashTable*, HashTable*, int index);
+		void copy(HashTable*, HashTable*, int);
 		void insert(string, HashTable*);
 
 		bool isPresent(string, int);
@@ -52,6 +52,9 @@ class HashTable
 		int DoubleHash( string);
 		int Hash1(int);
 		int Hash2(int);
-		int GetAsciiTotal(string word);
+		int GetAsciiTotal(string);
+
+		bool IsPrime(int);
+		int NextPrime(int);
 };
 
