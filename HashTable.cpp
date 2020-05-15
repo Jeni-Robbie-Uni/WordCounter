@@ -194,3 +194,17 @@ int HashTable::NextPrime(int a)
 	return a;
 
 }
+
+int HashTable::GetNumOfInserts() {
+	return numInserts;
+}
+
+string HashTable::GetKey(int i) {
+	string key = content[i].key;
+	return key;
+}
+int HashTable::GetValue(int i) {
+	
+	int val = content[i].value;
+	return val;
+}

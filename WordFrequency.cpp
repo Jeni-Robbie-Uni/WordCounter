@@ -10,7 +10,7 @@
 #include <fstream>
 #include "HashTable.h"
 #include "Word.h"
-#include <list>
+
 using namespace std;
 
 
@@ -24,6 +24,7 @@ int main()
     ifstream file;
     bool exit;
     string const exitCondition = "0";
+
 
     //Until exit condition is reached
     do
@@ -79,18 +80,37 @@ int main()
         
 
         int size = hTable->GetArraySize();
-        for (int i = 0; i < size; i++)
-        {
-            cout << hTable->content[i].key<< " " << hTable->content[i].value << endl;
-        }
-
             
-        cout << endl;
         file.close();
+        
+        ;
+        
+
+        int newArrSize = hTable->GetNumOfInserts();
+        auto arr = make_unique<InputUtils[]>(newArrSize);
+
+
+        int index2 = 0;
+        for (int i = 0;i < size;i++) {
+           
+            if (hTable->GetKey(i) != "EMPTY")
+            {
+                arr[index2].setKey(hTable->GetKey(i));
+                arr[index2].setValue(hTable->GetValue(i));
+                index2++;
+            }
+            else
+                continue;
+        }
+        
+        for (int i = 0; i < newArrSize; i++)
+        {
+            cout << arr[i].GetKey() << " " << arr[i].GetValue() <<endl;
+        }
 
     }while (exit == false);
    
-
+    
 }
 
 

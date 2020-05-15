@@ -28,16 +28,19 @@ class HashTable
 
 
 
-	public:
+	private:
 		int arraySize;
-		int attempts = 0;
-		int numInserts;
+		int numInserts=0;
 		HashNode* content;
 
 	public:
 		HashTable();
 		HashTable(int);
 		~HashTable();
+
+		int GetNumOfInserts();
+		string GetKey(int);
+		int GetValue(int);
 
 		HashTable* ReSizeHashTable(HashTable*);		
 		void copy(HashTable*, HashTable*, int);

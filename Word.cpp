@@ -1,5 +1,25 @@
 #include "Word.h"
 
+InputUtils::InputUtils() {
+    value = 0;
+    key = "";
+}
+
+void InputUtils::setKey(string input) {
+    key = input;
+}
+
+void InputUtils::setValue(int val) {
+    value = val;
+}
+
+string InputUtils::GetKey() {
+    return key;
+}
+int InputUtils::GetValue() {
+    return value;
+}
+
 
 
 string InputUtils::ConvertToLowerCase(string input) {
