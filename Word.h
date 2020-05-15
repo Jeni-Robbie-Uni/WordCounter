@@ -23,10 +23,10 @@ public:
 
 };
 
- class wordCount {
+struct wordCount {
 
 	 public:
-	 int value=0;
-	 string element;
+	 int count=0;
+	 string word;
 
  };

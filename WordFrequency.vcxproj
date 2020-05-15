@@ -149,12 +149,14 @@
   <ItemGroup>
     <ClCompile Include="HashTable.cpp" />
     <ClCompile Include="readFile.cpp" />
+    <ClCompile Include="SortList.cpp" />
     <ClCompile Include="Word.cpp" />
     <ClCompile Include="WordFrequency.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="HashTable.h" />
     <ClInclude Include="readFile.h" />
+    <ClInclude Include="SortList.h" />
     <ClInclude Include="Word.h" />
     <ClInclude Include="WordFrequency.h" />
   </ItemGroup>
