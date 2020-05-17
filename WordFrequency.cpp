@@ -29,8 +29,15 @@ int main()
         HashTable* hTable = new HashTable;
 
         //Instructions
-        cout << "Please enter name of text file user wishes to word count. For Example \"test.txt\"" << endl;
+        cout << "Please enter name of text file user wishes to word count or 0 to exit. For Example \"test.txt\"" << endl;
         cin >> fileName;    //get name of file to be opened
+        
+        if (fileName == exitCondition)    //break loop if exit condition met
+        {
+            exit = true;
+        }
+        if (exit == true)
+            continue;
 
         file.open(fileName);    //Open file
 
@@ -60,32 +67,27 @@ int main()
         do
         {
 
-            readWord = InputUtils::ReadWord(file);
+            readWord = InputUtils::ReadWord(file); //get and validate word from file
             
             if (readWord == "")         //if file finished has a new line or space it'll try and read word that isn't there so you have to ignore it
                 continue;
            
-            hTable->Insert(readWord, hTable);
+            hTable->Insert(readWord, hTable);       //try and insert word if unique int hash table, if present increment cout
             
-            if (hTable->IsArrayFull())
+            if (hTable->IsArrayFull())      //check if all slots are occupied
             {
-                hTable= hTable->ReSizeHashTable(hTable);
+                hTable= hTable->ReSizeHashTable(hTable);        //create bigger table and rehash values into it
             }
 
-        } while (!file.eof());
+        } while (!file.eof());      
         
-
-        int size = hTable->GetArraySize();
-            
         file.close();
-        
-        
-        
 
-        int newArrSize = hTable->GetNumOfInserts();
         
-        
-        WordCount* arr = new WordCount[newArrSize];
+        int size = hTable->GetArraySize();      //get table size
+      
+        int newArrSize = hTable->GetNumOfInserts(); // calculate new array size from number of inserts 
+        WordCount* arr = new WordCount[newArrSize]; //array with no empty slots to be sorted
 
 
   
@@ -94,16 +96,19 @@ int main()
            
             if (hTable->GetKey(i) != "EMPTY")
             {
-                arr[index2].word= hTable->GetKey(i); 
-                arr[index2].count=(hTable->GetValue(i));
-                index2++;
+                arr[index2].word= hTable->GetKey(i);        //copy word from hashtable into array
+                arr[index2].count=(hTable->GetValue(i));      //copy count from hashtable into array  
+                index2++;   
             }
             else
-                continue;
+                continue; //if empty slot, contents will not be copied
         }
 
+        //sort array into alphabetical descending order
         SortList::Quicksort(newArrSize, arr);
 
+
+        //Print array
         for (int i = 0; i < newArrSize; i++)
         {
             cout << arr[i].word << " " << arr[i].count <<endl;

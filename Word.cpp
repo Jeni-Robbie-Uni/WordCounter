@@ -12,6 +12,8 @@ string InputUtils::ConvertToLowerCase(string input) {
 	return input;
 
 }
+
+//removes invalid characters like punctuation
  string InputUtils::ValidateWord(string input) {
     for (int i = 0; i < input.length(); i++)
     {
@@ -36,7 +38,7 @@ string InputUtils::ConvertToLowerCase(string input) {
 
          //Convert word to correct format
          word = ConvertToLowerCase(word);
-
+         //removes invalid characters like punctuation
          word = ValidateWord(word);
 
      return word;

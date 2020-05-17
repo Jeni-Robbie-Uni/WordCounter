@@ -1,6 +1,9 @@
 #include "NumUtils.h"
 
+//Claculates next prime number, this code was from the link below.
+// https://stackoverflow.com/questions/30052316/find-next-prime-number-algorithm
 
+//checks if input is a prime number
 bool NumUtils::IsPrime(int number)
 {
 
@@ -27,6 +30,7 @@ bool NumUtils::IsPrime(int number)
 	return true;
 
 }
+//calculates the next possible prime number from input
 int NumUtils::NextPrime(int a)
 {
 

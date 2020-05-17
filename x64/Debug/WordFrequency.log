@@ -1,5 +1,7 @@
-﻿  SortList.cpp
+﻿  HashTable.cpp
+  SortList.cpp
   Word.cpp
   WordFrequency.cpp
   Generating Code...
+  LINK : C:\Users\jenir\source\repos\WordFrequency\x64\Debug\WordFrequency.exe not found or not built by the last incremental link; performing full link
   WordFrequency.vcxproj -> C:\Users\jenir\source\repos\WordFrequency\x64\Debug\WordFrequency.exe
