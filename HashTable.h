@@ -43,12 +43,12 @@ class HashTable
 		int GetValue(int);
 
 		HashTable* ReSizeHashTable(HashTable*);		
-		void copy(HashTable*, HashTable*, int);
-		void insert(string, HashTable*);
+		void Copy(HashTable*, HashTable*, int);
+		void Insert(string, HashTable*);
 
-		bool isPresent(string, int);
-		bool isEmpty(int);
-		bool isArrayFull();
+		bool IsPresent(string, int);
+		bool IsEmpty(int);
+		bool IsArrayFull();
 
 		int GetArraySize();
 

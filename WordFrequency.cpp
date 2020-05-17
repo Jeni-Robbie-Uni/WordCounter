@@ -65,9 +65,9 @@ int main()
             if (readWord == "")         //if file finished has a new line or space it'll try and read word that isn't there so you have to ignore it
                 continue;
            
-            hTable->insert(readWord, hTable);
+            hTable->Insert(readWord, hTable);
             
-            if (hTable->isArrayFull())
+            if (hTable->IsArrayFull())
             {
                 hTable= hTable->ReSizeHashTable(hTable);
             }
@@ -79,11 +79,13 @@ int main()
             
         file.close();
         
-        ;
+        
         
 
         int newArrSize = hTable->GetNumOfInserts();
-        wordCount* arr = new wordCount[newArrSize];
+        
+        
+        WordCount* arr = new WordCount[newArrSize];
 
 
   

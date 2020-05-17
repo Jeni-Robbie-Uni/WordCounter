@@ -7,7 +7,7 @@ using namespace std;
 
 public:
 
-	InputUtils();
+
 		static string ConvertToLowerCase(string);
 		static string ValidateWord(string);
 		static string ReadWord(ifstream&);
@@ -18,7 +18,7 @@ public:
 
 };
 
-struct wordCount {
+struct WordCount {
 
 	 public:
 	 int count=0;

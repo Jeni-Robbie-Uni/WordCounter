@@ -34,7 +34,7 @@ HashTable* HashTable::ReSizeHashTable(HashTable* old) {
 
 	for (int s = 0; s < old->arraySize; s++)
 	{
-		newPointer->copy(old, newPointer, s);
+		newPointer->Copy(old, newPointer, s);
 
 	}
 
@@ -59,7 +59,7 @@ int HashTable::DoubleHash(string word) {								//Hash function for strings
 	int index1 = Hash1(num);
 	
 	
-	if (!isEmpty(index1) && !isPresent(word, index1)) {
+	if (!IsEmpty(index1) && !IsPresent(word, index1)) {
 		int index2 = Hash2(num);
 		int i = 1;
 		int newIndex = 0;
@@ -70,7 +70,7 @@ int HashTable::DoubleHash(string word) {								//Hash function for strings
 			newIndex = (index1 +i + index2) % arraySize;
 			i++;
 
-		} while (!isEmpty(newIndex) && !isPresent(word, newIndex));
+		} while (!IsEmpty(newIndex) && !IsPresent(word, newIndex));
 
 		return newIndex;
 	}
@@ -90,25 +90,25 @@ int HashTable::Hash2(int total) {
 
 
 
-void HashTable::insert(string word,  HashTable* v) {
+void HashTable::Insert(string word,  HashTable* v) {
 	int attempts = 0;
 	int arrPos=0;
 
 	arrPos= DoubleHash( word);
 
-	if (isEmpty(arrPos)) {
+	if (IsEmpty(arrPos)) {
 		content[arrPos].key = word;
 		content[arrPos].value = 1;
 		numInserts++;
 	}
-	else if (isPresent(word, arrPos)) {
+	else if (IsPresent(word, arrPos)) {
 		content[arrPos].value++;
 	}
 
 }
 
 
-void HashTable::copy(HashTable* old, HashTable* newTable, const int index) {
+void HashTable::Copy(HashTable* old, HashTable* newTable, const int index) {
 
 	
 	int arrPos = 0;
@@ -116,7 +116,7 @@ void HashTable::copy(HashTable* old, HashTable* newTable, const int index) {
 	
 	do {
 		arrPos = newTable->DoubleHash( word);
-	} while (!isEmpty(arrPos));
+	} while (!IsEmpty(arrPos));
 
 	newTable->content[arrPos].value = old->content[index].value;
 	newTable->content[arrPos].key = old->content[index].key;
@@ -125,7 +125,7 @@ void HashTable::copy(HashTable* old, HashTable* newTable, const int index) {
 }
 
 
-bool HashTable::isPresent(string word, int index) {
+bool HashTable::IsPresent(string word, int index) {
 
 	if (content[index].key == word)
 		return true;
@@ -134,14 +134,14 @@ bool HashTable::isPresent(string word, int index) {
 
 }
 
-bool HashTable::isArrayFull() {
+bool HashTable::IsArrayFull() {
 	if (arraySize ==numInserts)
 		return true;
 	else
 		return false;
 }
 
-bool HashTable::isEmpty(int index) {
+bool HashTable::IsEmpty(int index) {
 
 	if (content[index].key=="EMPTY")
 		return true;
